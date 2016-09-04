@@ -1,19 +1,14 @@
-JFLAGS=-g
-JC=javac
-.SUFFIXES: .java .class
-.java .class:
-	$(JC) $(JFLASG) $*.java
+sourcefiles = \
+test.java
 
+classfiles =$(sourcefiles:.java=.class)
 
+all:$(classfiles)
+%.class: %.java
+	javac  $<
 
-
-CLASSES= test.java
-
-
-default: classes
-
-classes: $(CLASSES: .java=.class)
-
+run:
+	java test
 
 clean:
 	rm -f *.class
